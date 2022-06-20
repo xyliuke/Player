@@ -5,3 +5,5 @@ OpenGLiOSDemo/OpenGLiOSDemo.xcodeproj/project.xcworkspace/xcuserdata/liuke.xcuse
 OpenGLiOSDemo/OpenGLiOSDemo.xcodeproj/xcuserdata/liuke.xcuserdatad/*
 OpenGLiOSDemo/OpenGLiOSDemo.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 OpenGLiOSDemo/OpenGLiOSDemo.xcworkspace/xcuserdata/liuke.xcuserdatad/*
+MacOpenGLDemo/.idea/*
+MacOpenGLDemo/cmake-build-debug/*
