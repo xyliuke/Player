@@ -40,9 +40,13 @@ if (APPLE)
     endif ()
 endif ()
 
-AUX_SOURCE_DIRECTORY(. SRCS)
+INCLUDE_DIRECTORIES(src)
 
-add_executable(MacOpenGLDemo ${SRCS} )
+AUX_SOURCE_DIRECTORY(. SRCS)
+AUX_SOURCE_DIRECTORY(src/file FILE_SRC)
+AUX_SOURCE_DIRECTORY(src/gl GL_SRC)
+
+add_executable(MacOpenGLDemo ${SRCS} ${FILE_SRC} ${GL_SRC})
 
 TARGET_LINK_LIBRARIES(MacOpenGLDemo GLEW)
 TARGET_LINK_LIBRARIES(MacOpenGLDemo glfw3)
