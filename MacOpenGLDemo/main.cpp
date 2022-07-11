@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "gl/shader.h"
+#include <chrono>
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
@@ -17,8 +18,14 @@ static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 void triangle() {
-    auto shader = plan9::shader::compile_shader("./resource/vertex_shader.glsl", "./resource/fragment_shader.glsl");
-    shaderProgram = std::get<1>(shader);
+//    auto shader = plan9::shader::compile_shader("./resource/vertex_shader.glsl", "./resource/fragment_shader.glsl");
+//    shaderProgram = std::get<1>(shader);
+
+    plan9::shader shader = plan9::shader("./resource/vertex_shader.glsl", "./resource/fragment_shader.glsl");
+    bool suc = shader.compile();
+    if (suc) {
+        shaderProgram = shader.get_id();
+    }
 
     float vertices[] = {
             -0.5f, -0.5f, -0.f, // left
@@ -78,7 +85,19 @@ int main() {
 
     triangle();
 
+    std::cout << "time freq" << glfwGetTimerFrequency() << std::endl;
+
+    long time = 0;
+
     while (!glfwWindowShouldClose(window)) {
+//        if (time == 0) {
+//            time = std::chrono::steady_clock::now().time_since_epoch().count();
+//        } else {
+//            long tmp = std::chrono::steady_clock::now().time_since_epoch().count();
+//            std::cout << "current time " << tmp - time << std::endl;
+//            time = tmp;
+//        }
+
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 

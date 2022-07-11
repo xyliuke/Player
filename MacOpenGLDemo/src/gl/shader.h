@@ -18,15 +18,26 @@ namespace plan9 {
          */
         static std::tuple<bool, GLuint, std::string> create_vertex_shader(const std::string &path);
 
-        static std::tuple<bool, GLuint, std::string> create_vertex_shader_from_context(const char * context);
+        static std::tuple<bool, GLuint, std::string> create_vertex_shader_from_content(const char * content);
 
         static std::tuple<bool, GLuint, std::string> create_fragment_shader(const std::string &path);
 
-        static std::tuple<bool, GLuint, std::string> create_fragment_shader_from_context(const char * context);
+        static std::tuple<bool, GLuint, std::string> create_fragment_shader_from_content(const char * content);
 
         static std::tuple<bool, GLuint, std::string> compile_shader(const std::string &vertex_path, const std::string &fragment_path);
 
         static std::tuple<bool, GLuint, std::string> compile_shader(GLuint vertex_shader, GLuint fragment_shader);
+
+        shader(const std::string &vertex_file_path, const std::string &fragment_file_path);
+
+        bool compile();
+
+        GLuint get_id();
+
+        std::string  get_error();
+    private:
+        class shader_impl;
+        std::shared_ptr<shader_impl> impl;
     };
 }
 
